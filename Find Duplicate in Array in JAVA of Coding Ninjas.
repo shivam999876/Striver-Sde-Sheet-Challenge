@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.* ;
+
+import java.util.ArrayList;
+
+public class Solution{
+    public static int findDuplicate(ArrayList<Integer> arr, int n){
+        // Write your code here.
+        int tortoise = arr.get(0);
+        int hare = arr.get(0);
+
+        // Finding the intersection point of the cycle
+        do {
+            tortoise = arr.get(tortoise);
+            hare = arr.get(arr.get(hare));
+        } while (tortoise != hare);
+
+        // Finding the entrance to the cycle
+        tortoise = arr.get(0);
+        while (tortoise != hare) {
+            tortoise = arr.get(tortoise);
+            hare = arr.get(hare);
+        }
+
+        return hare;
+    }
+}
